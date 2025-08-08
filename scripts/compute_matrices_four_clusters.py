@@ -82,7 +82,7 @@ SaveData('vertical-swap-four-clusters.cdb/dm_mted.csv', proxy=tTKMergeTreeDistan
 matrix0 = np.loadtxt(open("vertical-swap-four-clusters.cdb/dm_pmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
 matrix1 = np.loadtxt(open("vertical-swap-four-clusters.cdb/dm_bmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
 matrix2 = np.loadtxt(open("vertical-swap-four-clusters.cdb/dm_wsd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
-matrix3 = np.loadtxt(open("vertical-swap-four-clustersr.cdb/dm_mted.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
+matrix3 = np.loadtxt(open("vertical-swap-four-clusters.cdb/dm_mted.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
 
 linkage = hc.linkage(sp.distance.squareform(matrix0), method='average')
 cm = sns.clustermap(matrix0, row_linkage=linkage, col_linkage=linkage, cmap='inferno_r')

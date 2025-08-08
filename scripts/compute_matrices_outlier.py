@@ -9,6 +9,8 @@ import numpy as np
 from sklearn.manifold import TSNE
 from sklearn.manifold import MDS
 import matplotlib.pyplot as plt
+import seaborn as sns
+import scipy.spatial as sp, scipy.cluster.hierarchy as hc
 
 #### import the simple module from the paraview
 from paraview.simple import *
@@ -55,15 +57,68 @@ tTKMergeTreeDistanceMatrix1.PathMappingLookahead = 0
 # save data
 SaveData('vertical-swap-outlier.cdb/dm_pmd.csv', proxy=tTKMergeTreeDistanceMatrix1, RowDataArrays=['Tree00', 'Tree01', 'Tree02', 'Tree03', 'Tree04', 'Tree05', 'Tree06', 'Tree07', 'Tree08', 'Tree09', 'Tree10', 'Tree11', 'Tree12', 'Tree13', 'Tree14', 'Tree15', 'Tree16', 'Tree17', 'Tree18', 'Tree19', 'treeID'],
     FieldAssociation='Row Data')
+
+tTKMergeTreeDistanceMatrix1.Backend = 'Branch Mapping Distance (EuroVis 2022)'
+
+# save data
+SaveData('vertical-swap-outlier.cdb/dm_bmd.csv', proxy=tTKMergeTreeDistanceMatrix1, RowDataArrays=['Tree00', 'Tree01', 'Tree02', 'Tree03', 'Tree04', 'Tree05', 'Tree06', 'Tree07', 'Tree08', 'Tree09', 'Tree10', 'Tree11', 'Tree12', 'Tree13', 'Tree14', 'Tree15', 'Tree16', 'Tree17', 'Tree18', 'Tree19', 'treeID'],
+    FieldAssociation='Row Data')
+
+tTKMergeTreeDistanceMatrix1.Backend = 'Wasserstein Distance (IEEE TVCG 2021)'
+tTKMergeTreeDistanceMatrix1.DistanceSquareRoot = 1
+
+# save data
+SaveData('vertical-swap-outlier.cdb/dm_wsd.csv', proxy=tTKMergeTreeDistanceMatrix1, RowDataArrays=['Tree00', 'Tree01', 'Tree02', 'Tree03', 'Tree04', 'Tree05', 'Tree06', 'Tree07', 'Tree08', 'Tree09', 'Tree10', 'Tree11', 'Tree12', 'Tree13', 'Tree14', 'Tree15', 'Tree16', 'Tree17', 'Tree18', 'Tree19', 'treeID'],
+    FieldAssociation='Row Data')
+
+tTKMergeTreeDistanceMatrix1.Backend = 'Edit Distance (IEEE TVCG 2019)'
+tTKMergeTreeDistanceMatrix1.DistanceSquareRoot = 1
+
+# save data
+SaveData('vertical-swap-outlier.cdb/dm_mted.csv', proxy=tTKMergeTreeDistanceMatrix1, RowDataArrays=['Tree00', 'Tree01', 'Tree02', 'Tree03', 'Tree04', 'Tree05', 'Tree06', 'Tree07', 'Tree08', 'Tree09', 'Tree10', 'Tree11', 'Tree12', 'Tree13', 'Tree14', 'Tree15', 'Tree16', 'Tree17', 'Tree18', 'Tree19', 'treeID'],
+    FieldAssociation='Row Data')
     
    
 matrix0 = np.loadtxt(open("vertical-swap-outlier.cdb/dm_pmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
+matrix1 = np.loadtxt(open("vertical-swap-outlier.cdb/dm_bmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
+matrix2 = np.loadtxt(open("vertical-swap-outlier.cdb/dm_wsd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
+matrix3 = np.loadtxt(open("vertical-swap-outlier.cdb/dm_mted.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
 
+linkage = hc.linkage(sp.distance.squareform(matrix0), method='average')
+cm = sns.clustermap(matrix0, row_linkage=linkage, col_linkage=linkage, cmap='inferno_r')
+reorder = cm.dendrogram_row.reordered_ind
 fig, ax = plt.subplots()
-ax.imshow(matrix0, cmap='coolwarm', interpolation='nearest')
-ax.set_xticks(np.arange(0,20,5))
-ax.set_yticks(np.arange(0,20,5))
+ax.imshow(matrix0[:,reorder][reorder], cmap='coolwarm', interpolation='nearest')
+ax.set_xticks([])
+ax.set_yticks([])
 fig.savefig("vertical-swap-outlier.cdb/dm_pmd.pdf", transparent=True, bbox_inches="tight", pad_inches=0.1)
+
+linkage = hc.linkage(sp.distance.squareform(matrix1), method='average')
+cm = sns.clustermap(matrix1, row_linkage=linkage, col_linkage=linkage, cmap='inferno_r')
+reorder = cm.dendrogram_row.reordered_ind
+fig, ax = plt.subplots()
+ax.imshow(matrix1[:,reorder][reorder], cmap='coolwarm', interpolation='nearest')
+ax.set_xticks([])
+ax.set_yticks([])
+fig.savefig("vertical-swap-outlier.cdb/dm_bmd.pdf", transparent=True, bbox_inches="tight", pad_inches=0.1)
+
+linkage = hc.linkage(sp.distance.squareform(matrix2), method='average')
+cm = sns.clustermap(matrix2, row_linkage=linkage, col_linkage=linkage, cmap='inferno_r')
+reorder = cm.dendrogram_row.reordered_ind
+fig, ax = plt.subplots()
+ax.imshow(matrix2[:,reorder][reorder], cmap='coolwarm', interpolation='nearest')
+ax.set_xticks([])
+ax.set_yticks([])
+fig.savefig("vertical-swap-outlier.cdb/dm_wsd.pdf", transparent=True, bbox_inches="tight", pad_inches=0.1)
+
+linkage = hc.linkage(sp.distance.squareform(matrix3), method='average')
+cm = sns.clustermap(matrix3, row_linkage=linkage, col_linkage=linkage, cmap='inferno_r')
+reorder = cm.dendrogram_row.reordered_ind
+fig, ax = plt.subplots()
+ax.imshow(matrix3[:,reorder][reorder], cmap='coolwarm', interpolation='nearest')
+ax.set_xticks([])
+ax.set_yticks([])
+fig.savefig("vertical-swap-outlier.cdb/dm_mted.pdf", transparent=True, bbox_inches="tight", pad_inches=0.1)
  
 
 

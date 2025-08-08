@@ -2,7 +2,7 @@
 
 apt-get install -y cmake-qt-gui libboost-system-dev libpython3.10-dev libxt-dev libxcursor-dev libopengl-dev
 apt-get install -y qttools5-dev libqt5x11extras5-dev libqt5svg5-dev qtxmlpatterns5-dev-tools 
-apt-get install -y python3-sklearn 
+apt-get install -y python3-sklearn python3-seaborn
 apt-get install -y libsqlite3-dev 
 apt-get install -y gawk
 apt-get install -y git p7zip-full wget

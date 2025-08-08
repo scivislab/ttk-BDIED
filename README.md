@@ -1,4 +1,4 @@
-# Path Mappings with Lookahead
+# Branch Decomposition-Independent Edit Distances for Merge Trees
 
 This repository contains the source code and examples for the following research papers:
 

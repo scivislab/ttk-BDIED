@@ -15,7 +15,7 @@ paraview.simple._DisableFirstRenderCameraReset()
 # ----------------------------------------------------------------
 
 # create a new 'TTK CinemaReader'
-tTKCinemaReader1 = TTKCinemaReader(registrationName='TTKCinemaReader1', DatabasePath='vertical_swap_four_clusters.cdb')
+tTKCinemaReader1 = TTKCinemaReader(registrationName='TTKCinemaReader1', DatabasePath='vertical-swap-four-clusters.cdb')
 
 # create a new 'TTK CinemaProductReader'
 tTKCinemaProductReader1 = TTKCinemaProductReader(registrationName='TTKCinemaProductReader1', Input=tTKCinemaReader1)

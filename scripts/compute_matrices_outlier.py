@@ -53,17 +53,17 @@ SetActiveSource(tTKMergeTreeDistanceMatrix1)
 tTKMergeTreeDistanceMatrix1.PathMappingLookahead = 0
 
 # save data
-SaveData('vertical-swap.cdb/dm_pmd.csv', proxy=tTKMergeTreeDistanceMatrix1, RowDataArrays=['Tree00', 'Tree01', 'Tree02', 'Tree03', 'Tree04', 'Tree05', 'Tree06', 'Tree07', 'Tree08', 'Tree09', 'Tree10', 'Tree11', 'Tree12', 'Tree13', 'Tree14', 'Tree15', 'Tree16', 'Tree17', 'Tree18', 'Tree19', 'treeID'],
+SaveData('vertical-swap-outlier.cdb/dm_pmd.csv', proxy=tTKMergeTreeDistanceMatrix1, RowDataArrays=['Tree00', 'Tree01', 'Tree02', 'Tree03', 'Tree04', 'Tree05', 'Tree06', 'Tree07', 'Tree08', 'Tree09', 'Tree10', 'Tree11', 'Tree12', 'Tree13', 'Tree14', 'Tree15', 'Tree16', 'Tree17', 'Tree18', 'Tree19', 'treeID'],
     FieldAssociation='Row Data')
     
    
-matrix0 = np.loadtxt(open("vertical-swap.cdb/dm_pmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
+matrix0 = np.loadtxt(open("vertical-swap-outlier.cdb/dm_pmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,20))
 
 fig, ax = plt.subplots()
 ax.imshow(matrix0, cmap='coolwarm', interpolation='nearest')
 ax.set_xticks(np.arange(0,20,5))
 ax.set_yticks(np.arange(0,20,5))
-fig.savefig("vertical-swap.cdb/dm_pmd.pdf", transparent=True, bbox_inches="tight", pad_inches=0.1)
+fig.savefig("vertical-swap-outlier.cdb/dm_pmd.pdf", transparent=True, bbox_inches="tight", pad_inches=0.1)
  
 
 

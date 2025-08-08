@@ -15,7 +15,7 @@ paraview.simple._DisableFirstRenderCameraReset()
 # ----------------------------------------------------------------
 
 # create a new 'TTK CinemaReader'
-tTKCinemaReader1 = TTKCinemaReader(registrationName='TTKCinemaReader1', DatabasePath='/home/wetzels/data/vertical_swap_four_clusters.cdb')
+tTKCinemaReader1 = TTKCinemaReader(registrationName='TTKCinemaReader1', DatabasePath='vertical_swap_four_clusters.cdb')
 
 # create a new 'TTK CinemaProductReader'
 tTKCinemaProductReader1 = TTKCinemaProductReader(registrationName='TTKCinemaProductReader1', Input=tTKCinemaReader1)
@@ -210,14 +210,14 @@ renderView1.CameraFocalPoint = [69.47561645507812, 78.22714233398438, 0.0]
 renderView1.CameraParallelScale = 725.4497084006886
 
 # save screenshot
-SaveScreenshot('/home/wetzels/barycenter_four_clusters_wsd.png', renderView1, ImageResolution=[3006, 1586],
+SaveScreenshot('vertical-swap-four-clusters.cdb/barycenter_four_clusters_wsd.png', renderView1, ImageResolution=[3006, 1586],
     TransparentBackground=0)
     
     
 tTKMergeTreeClustering1.Backend = 'Path Mapping Distance (TopoInVis 2022)'
 
 # save screenshot
-SaveScreenshot('/home/wetzels/barycenter_four_clusters_pmd.png', renderView1, ImageResolution=[3006, 1586],
+SaveScreenshot('vertical-swap-four-clusters.cdb/barycenter_four_clusters_pmd.png', renderView1, ImageResolution=[3006, 1586],
     TransparentBackground=0)
 
 

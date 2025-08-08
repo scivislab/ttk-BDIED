@@ -57,7 +57,7 @@ SaveData('vertical-swap.cdb/dm_pmd.csv', proxy=tTKMergeTreeDistanceMatrix1, RowD
     FieldAssociation='Row Data')
     
    
-matrix0 = np.loadtxt(open("Cylinder2D.cdb/dm_pmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,300))
+matrix0 = np.loadtxt(open("vertical-swap.cdb/dm_pmd.csv", "rb"), delimiter=",", skiprows=1,usecols=range(0,300))
 
 fig, ax = plt.subplots()
 ax.imshow(matrix0, cmap='coolwarm', interpolation='nearest')

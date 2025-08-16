@@ -23,22 +23,40 @@ IEEE Transactions on Visualization and Computer Graphics, 2025.
 <!---[Link to paper]()-->
 
 The sections below contain detailed instructions on how to compile and run the code on a vanilla Ubuntu 22.04 to reproduce the specific figures from each paper.
-For simple usage, you can clone this repository and run the installation script, the data script and the python code to render the figure:
+For simple usage, you can clone this repository and run the installation script, the data script and the python code (after setting the environment variables correctly) to render the figure:
 
 ```bash
 ./install.sh
-./get_data.sh
-python3 compute_dm.py
+./get_data_vortexstreet.sh
+
+PV_PREFIX=ttk-paraview/install
+export PATH=$PATH:$PV_PREFIX/bin
+export LD_LIBRARY_PATH=$PV_PREFIX/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$PV_PREFIX/lib/python3.10/site-packages
+
+TTK_PREFIX=ttk/install
+export PV_PLUGIN_PATH=$TTK_PREFIX/bin/plugins/TopologyToolKit
+export LD_LIBRARY_PATH=$TTK_PREFIX/lib:$LD_LIBRARY_PATH
+export PYTHONPATH=$PYTHONPATH:$TTK_PREFIX/lib/python3.10/site-packages
+
+python3 scripts/compute_matrices_vortexstreet.py
 ```
 
-The directory `ttk-BDIED` contains a complete ttk source with the methods from all four papers.
+## Usage
+
+The directory `ttk` contains a complete ttk source with the methods from all four papers.
 The installation script `install.sh` installs all dependencies, downloads the paraview source code and compiles paraview as well as ttk.
-The data script `get_data.sh` downloads the [2D vortex street dataset](https://www.csc.kth.se/~weinkauf/notes/cylinder2d.html) and converts it to vtk files.
-The python script `compute_dm.py` loads the vtk dataset, computes merge trees and the distance matrix with the path mapping distance for look-ahead values of 0-3.
+The data script `scripts/get_data_vortexstreet.sh` downloads the [2D vortex street dataset](https://www.csc.kth.se/~weinkauf/notes/cylinder2d.html) and converts it to vtk files.
+The python script `scripts/get_data_vortexstreet.sh` loads the vtk dataset, computes merge trees and the distance matrix with the path mapping distance for look-ahead values of 0-3.
 
 This produces four pdf files containing the distance matrices from the paper teaser, as well as four pdf files containing the t-SNE embeddings from the same figure.
 All outputs are located in the root directory of the repository.
 For a look-ahead value k (0-3), the two pdf are named `dm_la<k>.pdf` and `embedding_la<k>.pdf`.
+
+Other datasets can be downloaded through the script `scripts/get_data_synthetic.sh`.
+Alternatively, they can be manually downloaded from the data publications listed in the respective section below.
+For these datasets, distance matrices can be computed using the scripts `scripts/compute_matrices_four_clusters.py` and `scripts/compute_matrices_four_clusters.py`.
+A merge tree barycenter can be computed using `scripts/compute_barycenters_four_clusters.py`.
 
 ## Installation Note
 
@@ -104,3 +122,14 @@ export PV_PLUGIN_PATH=$TTK_PREFIX/bin/plugins/TopologyToolKit
 export LD_LIBRARY_PATH=$TTK_PREFIX/lib:$LD_LIBRARY_PATH
 export PYTHONPATH=$PYTHONPATH:$TTK_PREFIX/lib/python3.10/site-packages
 ```
+
+## Datasets
+"Vertical Instability Example — Four Clusters"  
+Florian Wetzels, Heike Leitte, Christoph Garth.  
+Zenodo, 2025.  
+DOI: [10.5281/zenodo.16756130](https://doi.org/10.5281/zenodo.16756130)
+
+"Vertical Instability Example — Outlier"  
+Florian Wetzels, Heike Leitte, Christoph Garth.  
+Zenodo, 2025.  
+DOI: [10.5281/zenodo.16755706](https://doi.org/10.5281/zenodo.16755706)

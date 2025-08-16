@@ -65,12 +65,12 @@ Tested on Ubuntu 22.04.3 LTS.
 ### Install the dependencies
 
 ```bash
-sudo apt-get -y install cmake-qt-gui libboost-system-dev libpython3.10-dev libxt-dev libxcursor-dev libopengl-dev
-sudo apt-get -y install qttools5-dev libqt5x11extras5-dev libqt5svg5-dev qtxmlpatterns5-dev-tools 
-sudo apt-get -y install python3-sklearn 
-sudo apt-get -y install libsqlite3-dev 
-sudo apt-get -y install gawk
-sudo apt-get -y install git p7zip-full wget
+apt-get install -y cmake-qt-gui libboost-system-dev libpython3.10-dev libxt-dev libxcursor-dev libopengl-dev
+apt-get install -y qttools5-dev libqt5x11extras5-dev libqt5svg5-dev qtxmlpatterns5-dev-tools 
+apt-get install -y python3-sklearn python3-seaborn
+apt-get install -y libsqlite3-dev 
+apt-get install -y gawk
+apt-get install -y git p7zip-full wget
 ```
 
 ### Install Paraview

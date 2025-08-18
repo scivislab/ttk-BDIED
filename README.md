@@ -26,8 +26,8 @@ The sections below contain detailed instructions on how to compile and run the c
 For simple usage, you can clone this repository and run the installation script, the data script and the python code (after setting the environment variables correctly) to render the figure:
 
 ```bash
-./install.sh
-./get_data_vortexstreet.sh
+./scripts/install.sh
+./scripts/get_data_vortexstreet.sh
 
 PV_PREFIX=ttk-paraview/install
 export PATH=$PATH:$PV_PREFIX/bin
@@ -45,7 +45,7 @@ python3 scripts/compute_matrices_vortexstreet.py
 ## Usage
 
 The directory `ttk` contains a complete ttk source with the methods from all four papers.
-The installation script `install.sh` installs all dependencies, downloads the paraview source code and compiles paraview as well as ttk.
+The installation script `scripts/install.sh` installs all dependencies, downloads the paraview source code and compiles paraview as well as ttk.
 The data script `scripts/get_data_vortexstreet.sh` downloads the [2D vortex street dataset](https://www.csc.kth.se/~weinkauf/notes/cylinder2d.html) and converts it to vtk files.
 The python script `scripts/get_data_vortexstreet.sh` loads the vtk dataset, computes merge trees and the distance matrix with the path mapping distance for look-ahead values of 0-3.
 
@@ -65,6 +65,7 @@ Tested on Ubuntu 22.04.3 LTS.
 ### Install the dependencies
 
 ```bash
+apt-get install -y wget git
 apt-get install -y cmake-qt-gui libboost-system-dev libpython3.10-dev libxt-dev libxcursor-dev libopengl-dev
 apt-get install -y qttools5-dev libqt5x11extras5-dev libqt5svg5-dev qtxmlpatterns5-dev-tools 
 apt-get install -y python3-sklearn python3-seaborn
